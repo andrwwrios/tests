@@ -1,0 +1,21 @@
+name: Extract LRZIP File
+
+on:
+  workflow_dispatch:  # This allows you to manually trigger the workflow
+  push:
+    branches:
+      - main
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install LRZIP
+        run: sudo apt-get update && sudo apt-get install lrzip -y
+
+      - name: Extract LRZIP File
+        run: lrzip -d clue.lrzip
